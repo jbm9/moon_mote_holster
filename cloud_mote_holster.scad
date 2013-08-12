@@ -11,6 +11,10 @@
 
 // needs to accept a 6mm diameter screw (will drill out)
 
+// NB: the base_height below is pretty tight, since you have to fit a
+// countersunk screw in there.  You might want to beef it up a mm or
+// two.
+
 
 moteclip(15, 33.33, 20.25,   3, 3,  3,  45);
 
