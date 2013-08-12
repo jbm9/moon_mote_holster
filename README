@@ -1,9 +1,18 @@
-.skel
-=====
+moon_mote_holster
+=================
 
-This is a skeleton project.  It needs better documentation.
+My kid has a little moon nightlight, but we keep misplacing the remote
+control for it.  This is a trivial clip that holds it; you may need to
+modify it to suit your needs.  In particular, it doesn't have a
+mounting hole.  I melted one into mine using a hot air gun and a
+screw, then used a countersink bit to make room for the screw head.
 
-Contents:
+You probably want to load it by slipping it in from the top, but it
+does have the angled bits to accept it by shoving it in.  It's just a
+bit fragile for that.
 
-web/ -- An empty website for this thing
-code/ -- An empty directory for code for this thing
+Released into the public domain, assuming it was even copyrightable in
+the first place.
+
+Josh Myer <josh@joshisanerd.com>
+2013-08-11
