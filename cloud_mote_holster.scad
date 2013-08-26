@@ -15,34 +15,48 @@
 // countersunk screw in there.  You might want to beef it up a mm or
 // two.
 
-
-moteclip(15, 33.33, 20.25,   3, 3,  3,  45);
-
-
-module moteclip(depth, mote_w, mote_h, wall_width, base_height, clip_depth, clip_angle) {
-  // outer bounding width:
-  outer_w = mote_w + 2*wall_width;
-
-  // How high does our clip need to be given the depth and angle?
-  clip_height = clip_depth/tan(clip_angle);
+include <moteclip.scad>;
 
 
-  // outer bounding height
-  outer_h = mote_h + wall_width + clip_height;
+moteW = 33.33+1;
+moteH = 20.25 + 2.75; // added slop, since we're capturing it fully now
+moteL = 85 + 1;
 
-  // where to offset for deletion operations
-  del_delta = 1;
-  // how much z to use for deletions
-  del_depth = depth + 2*del_delta; 
-
-  difference() {
-    cube([outer_w,outer_h,depth]);
-    translate([wall_width,base_height,-del_delta]) cube([mote_w, mote_h, del_depth]);
+wallW = 3;
+baseH = 3;
+clipD = 10;
+clipW = 3;
+clipA = 45;
 
 
-    // remove the parallelogram for the clip gap
-    translate([wall_width, base_height+mote_h+clip+height,-del_delta]) #
-      linear_extrude(height=del_depth, center=false) 
-      polygon( points=[[0,0], [clip_depth,clip_height], [mote_w-clip_depth,clip_height], [mote_w,0]]);
-  }
+notchW = 10;
+notchD = baseH/2;
+
+screwR = 4/2;
+
+midline = (moteW+2*wallW)/2;
+
+
+difference() {
+
+    moteclip(clipD, 
+	     moteW, moteH,
+	     wallW, baseH,
+	     clipW, clipA);
+
+ translate([midline-notchW/2, 0,0]) cube([notchW, notchD, clipD   ], false);
+    translate([midline,0,clipD/2]) rotate([-90,0,0]) cylinder(baseH, screwR, screwR, false);
 }
+
+
+
+translate([-20,-10,0]) difference() {
+  moteclip(notchW,
+	   moteL, moteH,
+	   wallW, baseH, clipW, clipA);
+
+ translate([(85+wallW*2-clipD)/2, baseH/2, 0]) cube([clipD, notchD, notchW], false);
+ translate([(85+wallW*2)/2,0,notchW/2]) rotate([-90,0,0]) cylinder(baseH, screwR, screwR, false);
+}
+
+
