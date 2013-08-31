@@ -23,7 +23,7 @@ moteH = 20.25 + 2.75; // added slop, since we're capturing it fully now
 moteL = 85 + 1;
 
 wallW = 3;
-baseH = 3;
+baseH = 5;
 clipD = 10;
 clipW = 3;
 clipA = 45;
